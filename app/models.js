@@ -4,6 +4,7 @@ const {
     USER_AVERAGE_SESSIONS,
     USER_PERFORMANCE
 } = require('./data')
+const { use } = require('./routes')
 
 /**
  * @description Retrieve the main user info (first name, last name, today score)
@@ -13,6 +14,13 @@ const getUserById = id => USER_MAIN_DATA
     .filter(user => user.id === id)
     .shift()
 
+
+    /**
+ * @description Retrieve the main users id  
+ */
+const getUsers =  () => USER_MAIN_DATA
+    .map(user => [{id:user.id, firstName: user.userInfos.firstName}])
+    
 
 /**
  * @param {number} id 
@@ -41,5 +49,6 @@ module.exports = {
     getUserById,
     getUserActivityById,
     getUserAverageSession,
-    getUserPerformance
+    getUserPerformance,
+    getUsers
 }
